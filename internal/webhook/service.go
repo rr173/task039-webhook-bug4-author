@@ -133,6 +133,8 @@ func (s *Service) SetDownstream(url string) {
 
 // Downstream returns the currently registered downstream URL (empty if none).
 func (s *Service) Downstream() string {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	return s.downstreamURL
 }
 
